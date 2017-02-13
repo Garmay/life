@@ -35,19 +35,20 @@ public class StoryLocalDataSource implements StoryDataSource{
         try {
             Gson gson = new Gson();
             File file = new File(context.getFilesDir(), mFileName);
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while((line = bufferedReader.readLine())!=null){
-                stringBuilder.append(line);
+            if (file.exists()) {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+
+                Story[] stories = gson.fromJson(stringBuilder.toString(), Story[].class);
+                callback.onStoriesLoad(new ArrayList<Story>(Arrays.asList(stories)));
+            } else {
+                callback.onStoriesLoad(new ArrayList<Story>());
             }
 
-            Story[] stories = gson.fromJson(stringBuilder.toString(), Story[].class);
-            callback.onStoriesLoad(new ArrayList<Story>(Arrays.asList(stories)));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            callback.onStoriesLoad(new ArrayList<Story>());
         } catch (IOException e) {
             e.printStackTrace();
             callback.onFailed(new Error(e.getMessage()));
@@ -61,7 +62,7 @@ public class StoryLocalDataSource implements StoryDataSource{
     }
 
     @Override
-    public void deleteStory(Context context, long id, DeleteStoryCallback callback) {
+    public void deleteStories(Context context, long[] id, DeleteStoriesCallback callback) {
 
     }
 

@@ -35,8 +35,8 @@ public class StoryDataRepo implements StoryDataSource{
     }
 
     @Override
-    public void deleteStory(Context context, long id, DeleteStoryCallback callback) {
-        mLocalDataSource.deleteStory(context, id, callback);
+    public void deleteStories(Context context, long[] id, DeleteStoriesCallback callback) {
+        mLocalDataSource.deleteStories(context, id, callback);
     }
 
     @Override

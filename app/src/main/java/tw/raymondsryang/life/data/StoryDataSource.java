@@ -9,7 +9,7 @@ public interface StoryDataSource {
     void loadStory(Context context, long id, LoadStoryCallback callback);
     void loadStories(Context context, LoadStoriesCallback callback);
     void updateStory(Context context, long id, Story story, UpdateStoryCallback callback);
-    void deleteStory(Context context, long id, DeleteStoryCallback callback);
+    void deleteStories(Context context, long[] id, DeleteStoriesCallback callback);
     void insertStory(Context context,  Story story, InsertStoryCallback callback);
 
     interface LoadStoryCallback{
@@ -27,8 +27,8 @@ public interface StoryDataSource {
         void onFailed(Error error);
     }
 
-    interface DeleteStoryCallback{
-        void onStoryDelete();
+    interface DeleteStoriesCallback{
+        void onStoriesDelete();
         void onFailed(Error error);
     }
 
