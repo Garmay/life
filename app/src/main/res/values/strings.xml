@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Life</string>
+    <string name="story_title_demo">Title</string>
+    <string name="story_content_demo">Today is a good day.</string>
+    <string name="activity_label_add_story">新增故事</string>
+    <string name="story_content">內文</string>
+    <string name="story_title">標題</string>
+    <string name="menu_save">儲存</string>
+    <string name="story_date_demo">0000-00-00</string>
+</resources>
