@@ -20,7 +20,7 @@ public class StoryDataRepo implements StoryDataSource{
     }
 
     @Override
-    public void loadStory(Context context, long id, LoadStoryCallback callback) {
+    public void loadStory(Context context, String id, LoadStoryCallback callback) {
         mLocalDataSource.loadStory(context, id, callback);
     }
 
@@ -30,12 +30,12 @@ public class StoryDataRepo implements StoryDataSource{
     }
 
     @Override
-    public void updateStory(Context context, long id, Story story, UpdateStoryCallback callback) {
+    public void updateStory(Context context, String id, Story story, UpdateStoryCallback callback) {
         mLocalDataSource.updateStory(context, id, story, callback);
     }
 
     @Override
-    public void deleteStories(Context context, long[] id, DeleteStoriesCallback callback) {
+    public void deleteStories(Context context, String[] id, DeleteStoriesCallback callback) {
         mLocalDataSource.deleteStories(context, id, callback);
     }
 

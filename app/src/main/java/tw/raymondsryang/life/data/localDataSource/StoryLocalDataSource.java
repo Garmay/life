@@ -26,7 +26,7 @@ public class StoryLocalDataSource implements StoryDataSource{
     }
 
     @Override
-    public void loadStory(Context context, long id, LoadStoryCallback callback) {
+    public void loadStory(Context context, String id, LoadStoryCallback callback) {
 
     }
 
@@ -57,13 +57,44 @@ public class StoryLocalDataSource implements StoryDataSource{
     }
 
     @Override
-    public void updateStory(Context context, long id, Story story, UpdateStoryCallback callback) {
+    public void updateStory(Context context, String id, Story story, UpdateStoryCallback callback) {
 
     }
 
     @Override
-    public void deleteStories(Context context, long[] id, DeleteStoriesCallback callback) {
+    public void deleteStories(final Context context, final String[] id, final DeleteStoriesCallback callback) {
+        loadStories(context, new LoadStoriesCallback() {
+            @Override
+            public void onStoriesLoad(List<Story> stories) {
+                List<Story> toBeDelete = new ArrayList<Story>();
+                for(int i=0; i<stories.size();++i){
+                    for (String anId : id) {
+                        if (stories.get(i).getId().equals(anId)) {
+                            toBeDelete.add(stories.get(i));
+                        }
+                    }
+                }
 
+                stories.removeAll(toBeDelete);
+
+                try {
+                    FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
+                    outputStream.write(new Gson().toJson(stories).getBytes());
+                    callback.onStoriesDelete(stories);
+                } catch (FileNotFoundException e) {
+                    callback.onFailed(new Error(e.getMessage()));
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailed(Error error) {
+                callback.onFailed(error);
+            }
+        });
     }
 
     @Override

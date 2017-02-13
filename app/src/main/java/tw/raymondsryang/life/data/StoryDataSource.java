@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface StoryDataSource {
 
-    void loadStory(Context context, long id, LoadStoryCallback callback);
+    void loadStory(Context context, String id, LoadStoryCallback callback);
     void loadStories(Context context, LoadStoriesCallback callback);
-    void updateStory(Context context, long id, Story story, UpdateStoryCallback callback);
-    void deleteStories(Context context, long[] id, DeleteStoriesCallback callback);
+    void updateStory(Context context, String id, Story story, UpdateStoryCallback callback);
+    void deleteStories(Context context, String[] id, DeleteStoriesCallback callback);
     void insertStory(Context context,  Story story, InsertStoryCallback callback);
 
     interface LoadStoryCallback{
@@ -28,7 +28,7 @@ public interface StoryDataSource {
     }
 
     interface DeleteStoriesCallback{
-        void onStoriesDelete();
+        void onStoriesDelete(List<Story> stories);
         void onFailed(Error error);
     }
 
