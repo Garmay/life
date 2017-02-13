@@ -8,21 +8,47 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import tw.raymondsryang.life.R;
+import tw.raymondsryang.life.activity.StoryListActivity;
 import tw.raymondsryang.life.data.Story;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 
     private List<Story> mStorySet;
+    private StoryListActivity mStoryListActivity;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    private boolean[] mSelected;
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public View rootView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            rootView = itemView;
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (mStoryListActivity.getState()==StoryListActivity.STATE_NORMAL) {
+                        mStoryListActivity.toMultiState();
+                    }
+
+                    return false;
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mStoryListActivity.choseItem(view, mStorySet.get(getAdapterPosition()));
+                    mSelected[getAdapterPosition()] = view.isActivated();
+                }
+            });
         }
     }
 
-    public StoryAdapter(List<Story> storySet){
+    public StoryAdapter(List<Story> storySet, StoryListActivity storyListActivity){
         this.mStorySet = storySet;
+        this.mStoryListActivity = storyListActivity;
+        mSelected = new boolean[mStorySet.size()];
     }
 
     @Override
@@ -34,7 +60,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.rootView.setActivated(mSelected[position]);
     }
 
     @Override
@@ -44,8 +70,17 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
     public void changeData(List<Story> stories){
         this.mStorySet = stories;
+        mSelected = new boolean[mStorySet.size()];
         notifyDataSetChanged();
     }
+
+    public void toNormalState(){
+        for(int i=0;i<mSelected.length;++i){
+            mSelected[i] = false;
+        }
+        notifyDataSetChanged();
+    }
+
 }
 
 

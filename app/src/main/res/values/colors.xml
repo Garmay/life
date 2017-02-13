@@ -4,4 +4,5 @@
     <color name="defaultColorPrimaryDark">#FF000000</color>
     <color name="defaultColorAccent">#FF80CBC4</color>
     <color name="defaultColorForeground">#FFFFFFFF</color>
+    <color name="defaultColorButtonNormal">#FF5A595B</color>
 </resources>
