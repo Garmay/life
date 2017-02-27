@@ -85,7 +85,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
         String path = holder.rootView.getContext().getFilesDir()+"/"+Config.STORY_PHOTO_DIR+"/"+mStorySet.get(position).getId();
         File file = new File(path);
-        boolean exist = file.exists();
 
         Picasso
                 .with(holder.rootView.getContext())
