@@ -6,14 +6,34 @@ import java.util.UUID;
 public class Story {
 
     private String id = UUID.randomUUID().toString();
-    private Date storyDate;
+    private String date;
+    private String title;
+    private String content;
 
-    public Date getStoryDate() {
-        return storyDate;
+    public String getDate() {
+        return date;
     }
 
-    public Story setStoryDate(Date storyDate) {
-        this.storyDate = storyDate;
+    public Story setDate(String date) {
+        this.date = date;
+        return this;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Story setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Story setContent(String content) {
+        this.content = content;
         return this;
     }
 

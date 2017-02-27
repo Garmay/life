@@ -4,12 +4,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.List;
 
 import tw.raymondsryang.life.R;
 import tw.raymondsryang.life.activity.StoryListActivity;
+import tw.raymondsryang.life.config.Config;
 import tw.raymondsryang.life.data.Story;
+
+import static com.squareup.picasso.Picasso.with;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 
@@ -21,10 +29,18 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public View rootView;
+        public TextView title, content, date;
+        public ImageView photo;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             rootView = itemView;
+            photo = (ImageView) itemView.findViewById(R.id.photo);
+            title = (TextView) itemView.findViewById(R.id.title);
+            content = (TextView) itemView.findViewById(R.id.content);
+            date = (TextView) itemView.findViewById(R.id.date);
+
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -38,8 +54,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mStoryListActivity.choseItem(view, mStorySet.get(getAdapterPosition()));
-                    mSelected[getAdapterPosition()] = view.isActivated();
+                    if (mStoryListActivity.getState()==StoryListActivity.STATE_MULTI_OPTION) {
+                        mStoryListActivity.choseItem(view, mStorySet.get(getAdapterPosition()));
+                        mSelected[getAdapterPosition()] = view.isActivated();
+                    }
                 }
             });
         }
@@ -61,6 +79,19 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.rootView.setActivated(mSelected[position]);
+        holder.title.setText(mStorySet.get(position).getTitle());
+        holder.content.setText(mStorySet.get(position).getContent());
+        holder.date.setText(mStorySet.get(position).getDate());
+
+        String path = holder.rootView.getContext().getFilesDir()+"/"+Config.STORY_PHOTO_DIR+"/"+mStorySet.get(position).getId();
+        File file = new File(path);
+        boolean exist = file.exists();
+
+        Picasso
+                .with(holder.rootView.getContext())
+                .load(file)
+                .into(holder.photo);
+
     }
 
     @Override
