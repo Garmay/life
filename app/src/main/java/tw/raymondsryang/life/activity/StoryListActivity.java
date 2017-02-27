@@ -69,6 +69,7 @@ public class StoryListActivity extends AppCompatActivity {
         menu.clear();
         switch (mState) {
             case STATE_NORMAL:
+                getMenuInflater().inflate(R.menu.menu_story_list_normal, menu);
                 break;
             case STATE_MULTI_OPTION:
                 getMenuInflater().inflate(R.menu.menu_story_list_multi_chosen, menu);
@@ -87,6 +88,10 @@ public class StoryListActivity extends AppCompatActivity {
                 break;
             case R.id.delete:
                 delete();
+                break;
+            case R.id.about_life:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
