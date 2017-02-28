@@ -18,7 +18,7 @@
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="10dp"
+            android:minHeight="200dp"
             android:adjustViewBounds="true"/>
         <FrameLayout
             android:layout_width="match_parent"
