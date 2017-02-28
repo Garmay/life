@@ -95,6 +95,8 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         Picasso
                 .with(holder.rootView.getContext())
                 .load(file)
+                .fit()
+                .centerInside()
                 .into(holder.photo);
 
     }
