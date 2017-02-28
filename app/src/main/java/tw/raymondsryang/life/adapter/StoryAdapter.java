@@ -19,6 +19,7 @@ import tw.raymondsryang.life.config.Config;
 import tw.raymondsryang.life.data.Story;
 import tw.raymondsryang.life.utils.Utils;
 
+import static android.R.attr.path;
 import static com.squareup.picasso.Picasso.with;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
@@ -88,9 +89,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.content.setText(mStorySet.get(position).getContent());
         holder.date.setText(mStorySet.get(position).getDate());
 
-        String path = Utils.getStoryImagePath(holder.rootView.getContext(), mStorySet.get(position).getId()) ;
-
-        File file = new File(path);
+        File file = new File(Utils.getStoryImagePath(holder.rootView.getContext(), mStorySet.get(position).getId()));
 
         Picasso
                 .with(holder.rootView.getContext())

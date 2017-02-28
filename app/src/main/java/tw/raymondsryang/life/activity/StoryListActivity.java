@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,11 +58,12 @@ public class StoryListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddStoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditStoryActivity.class);
                 startActivity(intent);
                 toNormalState();
             }
         });
+
     }
 
     @Override

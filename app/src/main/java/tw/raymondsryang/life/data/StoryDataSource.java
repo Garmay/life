@@ -11,6 +11,7 @@ public interface StoryDataSource {
     void updateStory(Context context, String id, Story story, UpdateStoryCallback callback);
     void deleteStories(Context context, String[] id, DeleteStoriesCallback callback);
     void insertStory(Context context,  Story story, InsertStoryCallback callback);
+    void insertStory(Context context,  int index, Story story, InsertStoryCallback callback);
 
     interface LoadStoryCallback{
         void onStoryLoad(Story story);

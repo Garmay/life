@@ -26,8 +26,24 @@ public class StoryLocalDataSource implements StoryDataSource{
     }
 
     @Override
-    public void loadStory(Context context, String id, LoadStoryCallback callback) {
+    public void loadStory(final Context context, final String id, final LoadStoryCallback callback) {
+        loadStories(context, new LoadStoriesCallback() {
+            @Override
+            public void onStoriesLoad(List<Story> stories) {
+                for (Story item : stories) {
+                    if (item.getId().equals(id)) {
+                        callback.onStoryLoad(item);
+                        return;
+                    }
+                }
+                callback.onFailed(new Error("story with id: "+id+" not found!"));
+            }
 
+            @Override
+            public void onFailed(Error error) {
+                callback.onFailed(error);
+            }
+        });
     }
 
     @Override
@@ -57,8 +73,42 @@ public class StoryLocalDataSource implements StoryDataSource{
     }
 
     @Override
-    public void updateStory(Context context, String id, Story story, UpdateStoryCallback callback) {
+    public void updateStory(final Context context, final String id, final Story story, final UpdateStoryCallback callback) {
+        loadStories(context, new LoadStoriesCallback() {
+            @Override
+            public void onStoriesLoad(List<Story> stories) {
+                /*
+                此處避免使用list.get()，由於list之get方法時間複雜度為O(n)
+                若於迴圈中使用該方法，將導致搜尋時間複雜度上升至O(n^2)
+                 */
+                int index = 0;
+                for (Story item: stories) {
+                    if (item.getId().equals(id)){
+                        stories.remove(index);
+                        stories.add(index, story);
+                        break;
+                    }
+                    ++index;
+                }
 
+                final String newContent = new Gson().toJson(stories);
+                try {
+                    FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
+                    outputStream.write(newContent.getBytes());
+                    outputStream.close();
+                    callback.onStoryUpdate(story);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    callback.onFailed(new Error(e.getMessage()));
+                }
+
+            }
+
+            @Override
+            public void onFailed(Error error) {
+                callback.onFailed(error);
+            }
+        });
     }
 
     @Override
@@ -80,6 +130,7 @@ public class StoryLocalDataSource implements StoryDataSource{
                 try {
                     FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
                     outputStream.write(new Gson().toJson(stories).getBytes());
+                    outputStream.close();
                     callback.onStoriesDelete(stories);
                 } catch (FileNotFoundException e) {
                     callback.onFailed(new Error(e.getMessage()));
@@ -99,15 +150,20 @@ public class StoryLocalDataSource implements StoryDataSource{
 
     @Override
     public void insertStory(final Context context, final Story story, final InsertStoryCallback callback) {
+        insertStory(context, 0, story, callback);
+    }
 
+    @Override
+    public void insertStory(final Context context, final int index, final Story story, final InsertStoryCallback callback) {
         loadStories(context, new LoadStoriesCallback() {
             @Override
             public void onStoriesLoad(List<Story> stories) {
                 try {
-                    stories.add(0, story);
+                    stories.add(index, story);
                     String newContent = new Gson().toJson(stories);
                     FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
                     outputStream.write(newContent.getBytes());
+                    outputStream.close();
                     callback.onInsertCallback(story);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -120,6 +176,5 @@ public class StoryLocalDataSource implements StoryDataSource{
                 callback.onFailed(error);
             }
         });
-
     }
 }

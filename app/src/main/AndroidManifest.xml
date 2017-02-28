@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.AddStoryActivity"
+            android:name=".activity.EditStoryActivity"
             android:label="@string/activity_label_add_story"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.AboutActivity" />

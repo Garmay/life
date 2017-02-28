@@ -43,4 +43,9 @@ public class StoryDataRepo implements StoryDataSource{
     public void insertStory(Context context, Story story, InsertStoryCallback callback) {
         mLocalDataSource.insertStory(context, story, callback);
     }
+
+    @Override
+    public void insertStory(Context context, int index, Story story, InsertStoryCallback callback) {
+        mLocalDataSource.insertStory(context, index, story, callback);
+    }
 }
