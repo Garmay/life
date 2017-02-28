@@ -104,7 +104,7 @@ public class StoryLocalDataSource implements StoryDataSource{
             @Override
             public void onStoriesLoad(List<Story> stories) {
                 try {
-                    stories.add(story);
+                    stories.add(0, story);
                     String newContent = new Gson().toJson(stories);
                     FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
                     outputStream.write(newContent.getBytes());
