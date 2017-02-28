@@ -23,7 +23,8 @@
             android:name=".activity.AddStoryActivity"
             android:label="@string/activity_label_add_story"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.StoryDetailActivity"></activity>
     </application>
 
 </manifest>

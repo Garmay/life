@@ -1,9 +1,10 @@
 package tw.raymondsryang.life.data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Story {
+public class Story implements Serializable{
 
     private String id = UUID.randomUUID().toString();
     private String date;

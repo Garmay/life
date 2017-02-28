@@ -168,4 +168,10 @@ public class StoryListActivity extends AppCompatActivity {
     public int getState() {
         return mState;
     }
+
+    public void jumpToDetailActivity(Story story){
+        Intent intent = new Intent(this, StoryDetailActivity.class);
+        intent.putExtra("story", story);
+        startActivity(intent);
+    }
 }

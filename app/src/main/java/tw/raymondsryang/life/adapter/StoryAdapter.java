@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import tw.raymondsryang.life.R;
 import tw.raymondsryang.life.activity.StoryListActivity;
 import tw.raymondsryang.life.config.Config;
 import tw.raymondsryang.life.data.Story;
+import tw.raymondsryang.life.utils.Utils;
 
 import static com.squareup.picasso.Picasso.with;
 
@@ -57,9 +59,12 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
                     if (mStoryListActivity.getState()==StoryListActivity.STATE_MULTI_OPTION) {
                         mStoryListActivity.choseItem(view, mStorySet.get(getAdapterPosition()));
                         mSelected[getAdapterPosition()] = view.isActivated();
+                    } else {//normal state
+                        mStoryListActivity.jumpToDetailActivity(mStorySet.get(getAdapterPosition()));
                     }
                 }
             });
+
         }
     }
 
@@ -83,7 +88,8 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.content.setText(mStorySet.get(position).getContent());
         holder.date.setText(mStorySet.get(position).getDate());
 
-        String path = holder.rootView.getContext().getFilesDir()+"/"+Config.STORY_PHOTO_DIR+"/"+mStorySet.get(position).getId();
+        String path = Utils.getStoryImagePath(holder.rootView.getContext(), mStorySet.get(position).getId()) ;
+
         File file = new File(path);
 
         Picasso

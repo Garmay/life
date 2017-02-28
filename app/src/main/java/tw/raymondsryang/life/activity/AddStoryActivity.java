@@ -33,7 +33,6 @@ import tw.raymondsryang.life.data.Story;
 import tw.raymondsryang.life.data.StoryDataRepo;
 import tw.raymondsryang.life.data.StoryDataSource;
 
-import static android.R.attr.data;
 import static tw.raymondsryang.life.R.id.image;
 import static tw.raymondsryang.life.R.id.photo;
 
@@ -94,9 +93,7 @@ public class AddStoryActivity extends AppCompatActivity {
         StoryDataRepo.getInstance().insertStory(getApplicationContext(), mStory, new StoryDataSource.InsertStoryCallback() {
             @Override
             public void onInsertCallback(Story story) {
-                if(mPhoto!=null) {
-                    saveTmpPhotoIntoFile(story.getId());
-                }
+                saveTmpPhotoIntoFile(story.getId());
                 finish();
             }
 
