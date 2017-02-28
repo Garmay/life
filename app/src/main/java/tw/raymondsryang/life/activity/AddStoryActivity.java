@@ -13,12 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.sromku.simple.storage.SimpleStorage;
-import com.sromku.simple.storage.Storage;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
@@ -33,7 +30,6 @@ import tw.raymondsryang.life.data.Story;
 import tw.raymondsryang.life.data.StoryDataRepo;
 import tw.raymondsryang.life.data.StoryDataSource;
 
-import static tw.raymondsryang.life.R.id.image;
 import static tw.raymondsryang.life.R.id.photo;
 
 public class AddStoryActivity extends AppCompatActivity {
@@ -149,7 +145,7 @@ public class AddStoryActivity extends AppCompatActivity {
             FileInputStream inputStream = new FileInputStream(mPhoto);
 
             byte[] bytes = new byte[1024];
-            int len = 0;
+            int len;
             while ((len = inputStream.read(bytes)) > 0) {
                 outputStream.write(bytes, 0, len);
             }
