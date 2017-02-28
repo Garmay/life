@@ -135,6 +135,9 @@ public class AddStoryActivity extends AppCompatActivity {
     }
 
     private void saveTmpPhotoIntoFile(final String fileName){
+        if (mPhoto==null)
+            return;
+
         String newFilePath = getFilesDir().getPath()+"/"+Config.STORY_PHOTO_DIR;
         File file = new File(newFilePath);
         if(!file.exists() || !file.isDirectory()){
