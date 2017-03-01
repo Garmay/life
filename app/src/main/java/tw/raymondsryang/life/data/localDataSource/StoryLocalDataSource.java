@@ -17,6 +17,7 @@ import java.util.List;
 import tw.raymondsryang.life.data.Error;
 import tw.raymondsryang.life.data.Story;
 import tw.raymondsryang.life.data.StoryDataSource;
+import tw.raymondsryang.life.utils.Utils;
 
 public class StoryLocalDataSource implements StoryDataSource{
 
@@ -131,6 +132,14 @@ public class StoryLocalDataSource implements StoryDataSource{
                 }
 
                 stories.removeAll(toBeDelete);
+                /*同時刪除story的image*/
+                for (Story item:toBeDelete) {
+                    File file = new File(Utils.getStoryImagePath(context, item.getId()));
+                    if (file.exists()){
+                        //noinspection ResultOfMethodCallIgnored
+                        file.delete();
+                    }
+                }
 
                 try {
                     FileOutputStream outputStream = context.openFileOutput(mFileName, Context.MODE_PRIVATE);
