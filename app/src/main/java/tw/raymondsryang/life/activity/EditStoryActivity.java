@@ -80,6 +80,7 @@ public class EditStoryActivity extends AppCompatActivity {
 
                 mStory = (Story) getIntent().getSerializableExtra("story");
                 if (mStory==null) throw new IllegalArgumentException(getClass().getName()+" need argument 'story' in edit mode");
+                mTmpPhoto = new File(Utils.getStoryImagePath(getApplicationContext(), mStory.getId()));
                 fillDataIntoScreen(mStory);
 
             }
@@ -169,10 +170,12 @@ public class EditStoryActivity extends AppCompatActivity {
                 }
             });
         } else if (mMode == MODE_EDIT) {
-            StoryDataRepo.getInstance().updateStory(getApplicationContext(), mStory.getId(), mStory, new StoryDataSource.UpdateStoryCallback() {
+            final String oldId = mStory.getId();
+            StoryDataRepo.getInstance().updateStory(getApplicationContext(), oldId, mStory, new StoryDataSource.UpdateStoryCallback() {
                 @Override
                 public void onStoryUpdate(Story story) {
                     saveTmpPhotoIntoFile(story.getId());
+                    removeOldImageFile(oldId);
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("story", story);
                     setResult(Activity.RESULT_OK, resultIntent);
@@ -192,7 +195,7 @@ public class EditStoryActivity extends AppCompatActivity {
         mContent.setText(story.getContent());
         mTitle.setText(story.getTitle());
         Picasso.with(getApplicationContext())
-                .load(new File(Utils.getStoryImagePath(getApplicationContext(), story.getId())))
+                .load(mTmpPhoto)
                 .fit()
                 .centerInside()
                 .into(mPhotoView);
@@ -229,5 +232,10 @@ public class EditStoryActivity extends AppCompatActivity {
 
     public int getMode() {
         return mMode;
+    }
+
+    private boolean removeOldImageFile(final String oldImageId) {
+        File file = new File(Utils.getStoryImagePath(getApplicationContext(), oldImageId));
+        return file.exists() && file.delete();
     }
 }

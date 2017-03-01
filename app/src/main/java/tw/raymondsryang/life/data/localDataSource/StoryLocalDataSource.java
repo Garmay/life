@@ -84,12 +84,17 @@ public class StoryLocalDataSource implements StoryDataSource{
                 int index = 0;
                 for (Story item: stories) {
                     if (item.getId().equals(id)){
+                        /*Update story will refresh its id*/
+                        story.refreshId();
+
                         stories.remove(index);
                         stories.add(index, story);
                         break;
                     }
                     ++index;
                 }
+
+
 
                 final String newContent = new Gson().toJson(stories);
                 try {
