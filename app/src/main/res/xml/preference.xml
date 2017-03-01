@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+    <header
+        android:title="Open Source License">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="@string/package_name"
+            android:targetClass="tw.raymondsryang.life.activity.OpenSourceLicenseActivity"/>
+    </header>
+</preference-headers>

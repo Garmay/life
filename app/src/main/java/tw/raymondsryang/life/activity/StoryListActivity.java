@@ -95,6 +95,10 @@ public class StoryListActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.setting:
+                Intent settingIntent = new Intent(this, SettingActivity.class);
+                startActivity(settingIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
