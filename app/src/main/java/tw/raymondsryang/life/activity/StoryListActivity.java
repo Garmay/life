@@ -91,10 +91,6 @@ public class StoryListActivity extends AppCompatActivity {
             case R.id.delete:
                 delete();
                 break;
-            case R.id.about_life:
-                Intent intent = new Intent(this, AboutActivity.class);
-                startActivity(intent);
-                break;
             case R.id.setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);
