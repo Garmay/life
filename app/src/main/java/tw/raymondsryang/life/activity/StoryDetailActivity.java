@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -36,7 +37,6 @@ public class StoryDetailActivity extends AppCompatActivity {
     private Story mStory;
     private ImageView mImage;
     private TextView mContent;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             mStory = (Story) savedInstanceState.getSerializable("story");
         }
 
-        mToolbar = (Toolbar) findViewById(toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(toolbar);
         mImage = (ImageView) findViewById(R.id.image);
         mContent = (TextView) findViewById(R.id.content);
 
@@ -103,7 +103,10 @@ public class StoryDetailActivity extends AppCompatActivity {
                 .fit()
                 .centerInside()
                 .into(mImage);
-        mToolbar.setTitle(story.getTitle());
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(story.getTitle());
+        }
         mContent.setText(story.getContent());
 
     }
