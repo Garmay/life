@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tw.raymondsryang.life">
+    package="tw.raymondsryang.dailylife">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.StoryListActivity">
+        <activity android:name="tw.raymondsryang.dailylife.activity.StoryListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,18 +20,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.EditStoryActivity"
+            android:name="tw.raymondsryang.dailylife.activity.EditStoryActivity"
             android:label="@string/activity_label_add_story"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.StoryDetailActivity" />
+        <activity android:name="tw.raymondsryang.dailylife.activity.StoryDetailActivity" />
         <activity
-            android:name=".activity.SettingActivity"
+            android:name="tw.raymondsryang.dailylife.activity.SettingActivity"
             android:label="@string/activity_label_setting"
-            android:parentActivityName=".activity.StoryListActivity"/>
+            android:parentActivityName="tw.raymondsryang.dailylife.activity.StoryListActivity"/>
         <activity
-            android:name=".activity.OpenSourceLicenseActivity"
+            android:name="tw.raymondsryang.dailylife.activity.OpenSourceLicenseActivity"
             android:label="@string/activity_label_open_source_license"
-            android:parentActivityName=".activity.SettingActivity"
+            android:parentActivityName="tw.raymondsryang.dailylife.activity.SettingActivity"
             android:theme="@style/AppTheme"/>
     </application>
 

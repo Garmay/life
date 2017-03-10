@@ -1,4 +1,4 @@
-package tw.raymondsryang.life.data.localDataSource;
+package tw.raymondsryang.dailylife.data.localDataSource;
 
 import android.content.Context;
 
@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import tw.raymondsryang.life.data.Error;
-import tw.raymondsryang.life.data.Story;
-import tw.raymondsryang.life.data.StoryDataSource;
-import tw.raymondsryang.life.utils.Utils;
+import tw.raymondsryang.dailylife.data.Error;
+import tw.raymondsryang.dailylife.data.Story;
+import tw.raymondsryang.dailylife.data.StoryDataSource;
+import tw.raymondsryang.dailylife.utils.Utils;
 
 public class StoryLocalDataSource implements StoryDataSource{
 

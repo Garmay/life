@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Life</string>
+    <string name="app_name">Daily Life</string>
     <string name="package_name">tw.raymondsryang.life</string>
     <string name="story_title_demo">Title</string>
     <string name="story_content_demo">Today is a good day.</string>

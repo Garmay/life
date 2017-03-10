@@ -1,4 +1,4 @@
-package tw.raymondsryang.life;
+package tw.raymondsryang.dailylife;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

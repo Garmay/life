@@ -1,7 +1,6 @@
-package tw.raymondsryang.life.data;
+package tw.raymondsryang.dailylife.data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 public class Story implements Serializable{

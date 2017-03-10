@@ -1,4 +1,4 @@
-package tw.raymondsryang.life.activity;
+package tw.raymondsryang.dailylife.activity;
 
 import android.app.ActionBar;
 import android.preference.PreferenceActivity;
@@ -9,7 +9,7 @@ import android.widget.Toolbar;
 
 import java.util.List;
 
-import tw.raymondsryang.life.R;
+import tw.raymondsryang.dailylife.R;
 
 public class SettingActivity extends PreferenceActivity {
 

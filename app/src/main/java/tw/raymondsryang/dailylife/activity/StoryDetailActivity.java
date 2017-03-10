@@ -1,34 +1,25 @@
-package tw.raymondsryang.life.activity;
+package tw.raymondsryang.dailylife.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Point;
-import android.net.Uri;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
-import tw.raymondsryang.life.R;
-import tw.raymondsryang.life.data.Story;
-import tw.raymondsryang.life.utils.Utils;
+import tw.raymondsryang.dailylife.R;
+import tw.raymondsryang.dailylife.data.Story;
+import tw.raymondsryang.dailylife.utils.Utils;
 
-import static tw.raymondsryang.life.R.id.fill;
-import static tw.raymondsryang.life.R.id.toolbar;
+import static tw.raymondsryang.dailylife.R.id.toolbar;
 
 public class StoryDetailActivity extends AppCompatActivity {
 

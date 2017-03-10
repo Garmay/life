@@ -1,10 +1,9 @@
-package tw.raymondsryang.life.adapter;
+package tw.raymondsryang.dailylife.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,14 +12,10 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.List;
 
-import tw.raymondsryang.life.R;
-import tw.raymondsryang.life.activity.StoryListActivity;
-import tw.raymondsryang.life.config.Config;
-import tw.raymondsryang.life.data.Story;
-import tw.raymondsryang.life.utils.Utils;
-
-import static android.R.attr.path;
-import static com.squareup.picasso.Picasso.with;
+import tw.raymondsryang.dailylife.R;
+import tw.raymondsryang.dailylife.activity.StoryListActivity;
+import tw.raymondsryang.dailylife.data.Story;
+import tw.raymondsryang.dailylife.utils.Utils;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 

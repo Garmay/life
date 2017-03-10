@@ -1,8 +1,8 @@
-package tw.raymondsryang.life.data;
+package tw.raymondsryang.dailylife.data;
 
 import android.content.Context;
 
-import tw.raymondsryang.life.data.localDataSource.StoryLocalDataSource;
+import tw.raymondsryang.dailylife.data.localDataSource.StoryLocalDataSource;
 
 public class StoryDataRepo implements StoryDataSource{
 

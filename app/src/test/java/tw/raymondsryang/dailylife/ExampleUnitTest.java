@@ -1,4 +1,4 @@
-package tw.raymondsryang.life;
+package tw.raymondsryang.dailylife;
 
 import org.junit.Test;
 

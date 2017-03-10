@@ -1,4 +1,4 @@
-package tw.raymondsryang.life.config;
+package tw.raymondsryang.dailylife.config;
 
 /**
  * Created by shangrenyang on 2017/2/14.

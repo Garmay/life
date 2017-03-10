@@ -1,9 +1,9 @@
-package tw.raymondsryang.life.utils;
+package tw.raymondsryang.dailylife.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import tw.raymondsryang.life.config.Config;
+import tw.raymondsryang.dailylife.config.Config;
 
 public class Utils {
 

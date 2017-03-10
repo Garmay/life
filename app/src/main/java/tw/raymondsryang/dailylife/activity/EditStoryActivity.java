@@ -1,4 +1,4 @@
-package tw.raymondsryang.life.activity;
+package tw.raymondsryang.dailylife.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -26,15 +25,15 @@ import java.util.Date;
 import java.util.List;
 
 import pl.aprilapps.easyphotopicker.EasyImage;
-import tw.raymondsryang.life.R;
-import tw.raymondsryang.life.config.Config;
-import tw.raymondsryang.life.data.Error;
-import tw.raymondsryang.life.data.Story;
-import tw.raymondsryang.life.data.StoryDataRepo;
-import tw.raymondsryang.life.data.StoryDataSource;
-import tw.raymondsryang.life.utils.Utils;
+import tw.raymondsryang.dailylife.R;
+import tw.raymondsryang.dailylife.config.Config;
+import tw.raymondsryang.dailylife.data.Error;
+import tw.raymondsryang.dailylife.data.Story;
+import tw.raymondsryang.dailylife.data.StoryDataRepo;
+import tw.raymondsryang.dailylife.data.StoryDataSource;
+import tw.raymondsryang.dailylife.utils.Utils;
 
-import static tw.raymondsryang.life.R.id.photo;
+import static tw.raymondsryang.dailylife.R.id.photo;
 
 public class EditStoryActivity extends AppCompatActivity {
 

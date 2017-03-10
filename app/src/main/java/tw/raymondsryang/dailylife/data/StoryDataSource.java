@@ -1,4 +1,4 @@
-package tw.raymondsryang.life.data;
+package tw.raymondsryang.dailylife.data;
 
 import android.content.Context;
 
