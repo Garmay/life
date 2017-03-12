@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "663431439527",
+    "firebase_url": "https://dailylife-765d5.firebaseio.com",
+    "project_id": "dailylife-765d5",
+    "storage_bucket": "dailylife-765d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663431439527:android:c459cb195faf2363",
+        "android_client_info": {
+          "package_name": "tw.raymondsryang.dailylife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663431439527-5jc8ohdblg5pp7e2mjfjih7sdtk5oglu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-uxDQBpZWl-QQ_04j0kJVjpEHZEPNdv0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
