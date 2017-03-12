@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import tw.raymondsryang.dailylife.data.Error;
 import tw.raymondsryang.dailylife.data.Story;
 import tw.raymondsryang.dailylife.data.StoryDataSource;
 import tw.raymondsryang.dailylife.utils.Utils;
@@ -37,12 +36,12 @@ public class StoryLocalDataSource implements StoryDataSource{
                         return;
                     }
                 }
-                callback.onFailed(new Error("story with id: "+id+" not found!"));
+                callback.onFailed(new IllegalArgumentException("story with id: "+id+" not found!"));
             }
 
             @Override
-            public void onFailed(Error error) {
-                callback.onFailed(error);
+            public void onFailed(Exception exception) {
+                callback.onFailed(exception);
             }
         });
     }
@@ -68,7 +67,7 @@ public class StoryLocalDataSource implements StoryDataSource{
 
         } catch (IOException e) {
             e.printStackTrace();
-            callback.onFailed(new Error(e.getMessage()));
+            callback.onFailed(e);
         }
 
     }
@@ -105,14 +104,14 @@ public class StoryLocalDataSource implements StoryDataSource{
                     callback.onStoryUpdate(story);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    callback.onFailed(new Error(e.getMessage()));
+                    callback.onFailed(e);
                 }
 
             }
 
             @Override
-            public void onFailed(Error error) {
-                callback.onFailed(error);
+            public void onFailed(Exception exception) {
+                callback.onFailed(exception);
             }
         });
     }
@@ -146,20 +145,30 @@ public class StoryLocalDataSource implements StoryDataSource{
                     outputStream.write(new Gson().toJson(stories).getBytes());
                     outputStream.close();
                     callback.onStoriesDelete(stories);
-                } catch (FileNotFoundException e) {
-                    callback.onFailed(new Error(e.getMessage()));
-                    e.printStackTrace();
                 } catch (IOException e) {
+                    callback.onFailed(e);
                     e.printStackTrace();
                 }
 
             }
 
             @Override
-            public void onFailed(Error error) {
-                callback.onFailed(error);
+            public void onFailed(Exception exception) {
+                callback.onFailed(exception);
             }
         });
+    }
+
+    @Override
+    public void deleteAllStories(Context context, DeleteStoriesCallback callback) {
+        /*Delete stories file*/
+        File file = new File(context.getFilesDir().getPath()+"/"+mFileName);
+        if (file.exists()){
+            file.delete();
+        } else {
+            callback.onFailed(new FileNotFoundException());
+        }
+        callback.onStoriesDelete(null);
     }
 
     @Override
@@ -181,13 +190,13 @@ public class StoryLocalDataSource implements StoryDataSource{
                     callback.onInsertCallback(story);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    callback.onFailed(new Error(e.getMessage()));
+                    callback.onFailed(e);
                 }
             }
 
             @Override
-            public void onFailed(Error error) {
-                callback.onFailed(error);
+            public void onFailed(Exception exception) {
+                callback.onFailed(exception);
             }
         });
     }

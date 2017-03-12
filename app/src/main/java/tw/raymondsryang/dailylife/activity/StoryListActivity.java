@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,6 @@ import java.util.List;
 
 import tw.raymondsryang.dailylife.R;
 import tw.raymondsryang.dailylife.adapter.StoryAdapter;
-import tw.raymondsryang.dailylife.data.Error;
 import tw.raymondsryang.dailylife.data.Story;
 import tw.raymondsryang.dailylife.data.StoryDataRepo;
 import tw.raymondsryang.dailylife.data.StoryDataSource;
@@ -94,6 +94,10 @@ public class StoryListActivity extends AppCompatActivity {
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);
                 break;
+            case R.id.my_account:
+                Intent myAccountIntent = new Intent(this, AccountActivity.class);
+                startActivity(myAccountIntent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -109,8 +113,8 @@ public class StoryListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailed(Error error) {
-
+            public void onFailed(Exception e) {
+                Log.w("OnResume", "Load stories failed", e);
             }
         });
     }
@@ -132,7 +136,7 @@ public class StoryListActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailed(Error error) {
+                    public void onFailed(Exception e) {
                         Toast.makeText(StoryListActivity.this, "刪除失敗!", Toast.LENGTH_SHORT).show();
                         toNormalState();
                     }

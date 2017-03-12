@@ -1640,4 +1640,6 @@
     <string name="menu_setting">設定</string>
     <string name="activity_label_setting">Setting</string>
     <string name="activity_label_open_source_license">Open Source License</string>
+    <string name="menu_my_account">我的帳號</string>
+    <string name="logout">登出</string>
 </resources>

@@ -27,7 +27,6 @@ import java.util.List;
 import pl.aprilapps.easyphotopicker.EasyImage;
 import tw.raymondsryang.dailylife.R;
 import tw.raymondsryang.dailylife.config.Config;
-import tw.raymondsryang.dailylife.data.Error;
 import tw.raymondsryang.dailylife.data.Story;
 import tw.raymondsryang.dailylife.data.StoryDataRepo;
 import tw.raymondsryang.dailylife.data.StoryDataSource;
@@ -163,7 +162,7 @@ public class EditStoryActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailed(Error error) {
+                public void onFailed(Exception e) {
                     Toast.makeText(EditStoryActivity.this, "儲存失敗", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -182,7 +181,7 @@ public class EditStoryActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailed(Error error) {
+                public void onFailed(Exception e) {
                     Toast.makeText(EditStoryActivity.this, "儲存失敗", Toast.LENGTH_SHORT).show();
                     finish();
                 }
